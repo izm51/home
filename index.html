@@ -4,8 +4,9 @@
 <head>
   <meta charset="utf-8">
 
-  <title>The Homepage</title>
-  <meta name="description" content="The Homepage">
+  <title>The Home</title>
+  <meta name="description" content="The Home">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes" />
 
   <link rel='stylesheet' href='https://unpkg.com/ress/dist/ress.min.css'>
   <link rel='stylesheet' href='./style.css'>
@@ -13,7 +14,127 @@
 </head>
 
 <body>
-  <h1>The Homepage</h1>
-  <script src="js/scripts.js"></script>
+  <h1>The Home</h1>
+
+  <div id="wrap"></div>
+
+  <div id="option-wrap">
+    <input type="checkbox" id="option" />
+    <label for="option">Option</label>
+    <div id="edit" class="none">
+      <h3>サイトを追加する</h3>
+      <p>タイトル</p>
+      <input type="text" name="title" id="title">
+      <div class="spacer"></div>
+      <p>URL</p>
+      <input type="text" name="url" id="url">
+      <button id="add-button">追加</button>
+    </div>
+  </div>
+
+  <script>
+    //クエリの取得
+    function getUrlQueries() {
+      var queryStr = window.location.search.slice(1);  // 文頭?を除外
+          queries = {};
+
+      // クエリがない場合は空のオブジェクトを返す
+      if (!queryStr) {
+        return queries;
+      }
+
+      // クエリ文字列を & で分割して処理
+      queryStr.split('&').forEach(function(queryStr) {
+        // = で分割してkey,valueをオブジェクトに格納
+        var eqIndex = queryStr.indexOf('=')
+        queries[queryStr.slice(0, eqIndex)] = queryStr.slice(eqIndex+1)
+      });
+
+      return queries;
+    }
+
+    function addQuery() {
+      const queries = getUrlQueries()
+
+      const url = document.getElementById('url').value
+      let title = document.getElementById('title').value
+      if (title == "") {
+        title = url
+        title = title.replace(/=/g, "")
+      }
+
+      if (title!=""&url!="") {
+        queries[title] = url
+        updateParams(queries)
+      }
+    }
+
+    function removeQuery(q) {
+      if (window.confirm(q+' のリンクをリストから消去しますか?')) {
+        const queries = getUrlQueries()
+
+        delete queries[encodeURI(q)]
+
+        console.log(queries)
+        updateParams(queries)
+      }
+    }
+
+    function updateParams(queries) {
+      let setParam = '?'
+      for (k in queries) {
+        setParam = setParam + k + '=' + queries[k] + '&'
+      }
+      setParam = setParam.slice(0, -1)
+
+      location.search = setParam
+    }
+
+    document.getElementById('add-button').onclick = function() {
+      addQuery()
+    }
+
+    const pages = getUrlQueries()
+
+    console.log(pages)
+    if (!Object.keys(pages).length) {
+      console.log(pages)
+      document.getElementById('option').checked = true
+    }
+
+    const wrap = document.getElementById('wrap')
+    const fragment = document.createDocumentFragment()
+
+    for (const k in pages) {
+      const page = pages[k]
+
+      const box = document.createElement('div')
+      box.setAttribute('class', 'link-box')
+
+      const a = document.createElement('a')
+      a.setAttribute('class', 'link-button')
+      a.setAttribute('href', page)
+
+      const img = document.createElement('img')
+      img.setAttribute('src', 'http://www.google.com/s2/favicons?domain='+page)
+      const p = document.createElement('p')
+      p.textContent = decodeURI(k)
+
+      const btn = document.createElement('button')
+      btn.setAttribute('class', 'remove-button')
+      btn.setAttribute('onclick', 'removeQuery("'+decodeURI(k)+'")')
+      btn.textContent = 'X'
+
+      a.appendChild(img)
+      a.appendChild(p)
+
+      box.appendChild(a)
+      box.appendChild(btn)
+      fragment.appendChild(box)
+    }
+
+    wrap.appendChild(fragment)
+
+  </script>
 </body>
 </html>

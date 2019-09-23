@@ -1,3 +1,101 @@
-html {
-  color: red;
+body {
+  // color: red;
+  height: 100vh;
+  background: #444;
+  color: #dedede;
+}
+
+h1 {
+  text-align: center;
+  color: #222;
+  padding: 10px 0;
+}
+
+#wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 600px;
+  .link-box {
+    border: #dedede solid 1px;
+    padding: 5px 10px;;
+    border-radius: 5px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    a.link-button {
+      display: flex;
+      flex-direction: row;
+      color: #dedede;
+      text-decoration: none;
+      width: calc(100% - 11px);
+      overflow-wrap: break-word;
+      img {
+        object-fit: contain;
+      }
+      p {
+        overflow: hidden;
+        margin: 0 10px;
+      }
+    }
+    .remove-button {
+      font-weight: 1000;
+      color: #000;
+      font-size: 0.95em;
+      width: 11px
+    }
+  }
+}
+#option-wrap {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  padding: 5px 10px;
+  max-width: 600px;
+
+  #option {
+    display: none;
+  }
+  #option:checked ~ #edit {
+    display: grid
+  }
+  label {
+    color: #222;
+  }
+  label::before {
+    content: '+ '
+  }
+  #option:checked ~ label::before {
+    content: '- '
+  }
+
+  #edit {
+    width: 100%;
+    display: none;
+    grid-template-columns: 80px 1fr 55px;
+    max-width: 600px;
+    h3 {
+      grid-column: 1 / 4;
+    }
+    input {
+      border: #aaa solid 1px;
+      background: #fff;
+      color: #333;
+    }
+    button {
+      background: #fff;
+      border: #aaa solid 1px;
+      color: #333;
+      border-radius: 5px;
+      margin-left: 5px
+    }
+  }
 }

@@ -1,4 +1,137 @@
-html {
-  color: red;
+body {
+  height: 100vh;
+  background: #444;
+  color: #dedede;
+}
+
+h1 {
+  text-align: center;
+  color: #222;
+  padding: 10px 0;
+}
+
+#wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  padding: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 100%;
+  max-width: 600px;
+}
+
+#wrap .link-box {
+  border: #dedede solid 1px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  max-width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+#wrap .link-box a.link-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  color: #dedede;
+  text-decoration: none;
+  width: calc(100% - 11px);
+  overflow-wrap: break-word;
+}
+
+#wrap .link-box a.link-button img {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+#wrap .link-box a.link-button p {
+  overflow: hidden;
+  margin: 0 10px;
+}
+
+#wrap .link-box .remove-button {
+  font-weight: 1000;
+  color: #000;
+  font-size: 0.95em;
+  width: 11px;
+}
+
+#option-wrap {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 100%;
+  padding: 5px 10px;
+  max-width: 600px;
+}
+
+#option-wrap #option {
+  display: none;
+}
+
+#option-wrap #option:checked ~ #edit {
+  display: -ms-grid;
+  display: grid;
+}
+
+#option-wrap label {
+  color: #222;
+}
+
+#option-wrap label::before {
+  content: '+ ';
+}
+
+#option-wrap #option:checked ~ label::before {
+  content: '- ';
+}
+
+#option-wrap #edit {
+  width: 100%;
+  display: none;
+  -ms-grid-columns: 80px 1fr 55px;
+      grid-template-columns: 80px 1fr 55px;
+  max-width: 600px;
+}
+
+#option-wrap #edit h3 {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-column: 1 / 4;
+}
+
+#option-wrap #edit input {
+  border: #aaa solid 1px;
+  background: #fff;
+  color: #333;
+}
+
+#option-wrap #edit button {
+  background: #fff;
+  border: #aaa solid 1px;
+  color: #333;
+  border-radius: 5px;
+  margin-left: 5px;
 }
 /*# sourceMappingURL=style.css.map */
