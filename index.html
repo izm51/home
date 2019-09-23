@@ -7,6 +7,7 @@
   <title>The Home</title>
   <meta name="description" content="The Home">
   <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes" />
+  <link rel="icon" href="./icon.png">
 
   <link rel='stylesheet' href='https://unpkg.com/ress/dist/ress.min.css'>
   <link rel='stylesheet' href='./style.css'>
@@ -75,7 +76,6 @@
 
         delete queries[encodeURI(q)]
 
-        console.log(queries)
         updateParams(queries)
       }
     }
@@ -96,9 +96,7 @@
 
     const pages = getUrlQueries()
 
-    console.log(pages)
     if (!Object.keys(pages).length) {
-      console.log(pages)
       document.getElementById('option').checked = true
     }
 
