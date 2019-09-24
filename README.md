@@ -1,5 +1,5 @@
 # The Home
-- https://izm51.github.io/the-homepage/
+- https://izm51.github.io/home/
 - スマホブラウザの新しいタブに表示するためのシンプルなブックマークリスト
 - だれでも自分のブックマークリストを作成できる
 ## 使い方
